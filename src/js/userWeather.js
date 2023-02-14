@@ -20,11 +20,6 @@ const getUserWeather = async (location) => {
   cityInput.addEventListener("mouseout", () => {
     cityInput.value = location;
   });
-
-  setInterval(() => {
-    console.log(location);
-  }, 10000);
-  // document.querySelector(".city_input").textContent = data.name;
   document.querySelector(".temp").innerHTML =
     Math.round(data.main.temp - 273) + "&deg C";
   document.querySelector(
