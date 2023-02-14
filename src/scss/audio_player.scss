@@ -2,9 +2,8 @@
   padding: 15px;
   display: flex;
   flex-direction: column;
-  //   background-color: grey;
-  width: 500px;
-  height: 200px;
+  width: 400px;
+  height: auto;
 }
 
 .track_discription {
@@ -12,54 +11,109 @@
   display: flex;
   flex-direction: column;
   .track_title {
-    padding: 10px 0;
+    padding: 15px 0;
     white-space: nowrap;
     text-align: start;
     width: 100%;
-    animation: scroll 20s infinite linear;
-    @keyframes scroll {
-      from {
-        transform: translateX(100%);
-      }
-
-      to {
-        transform: translateX(-100%);
-      }
-    }
+    // animation: scroll 20s infinite linear;
+    // @keyframes scroll {
+    //   from {
+    //     transform: translateX(100%);
+    //   }
+    //   to {
+    //     transform: translateX(-100%);
+    //   }
+    // }
   }
   .track_author {
     font-weight: bold;
-    padding-bottom: 30px;
   }
 }
+
+// .timeline {
+//   display: flex;
+//   cursor: pointer;
+//   position: relative;
+//   width: 100%;
+//   height: 6px;
+//   border-radius: 2px;
+//   background: gray;
+//   .progress {
+//     background: white;
+//     width: 0%;
+//     height: 100%;
+//     transition: 0.25s;
+//   }
+// }
+
+.track_timeline {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+  .track_line {
+    position: absolute;
+    z-index: -1;
+    height: 6px;
+    width: 100%;
+    background-color: grey;
+    border-radius: 10px;
+  }
+  .track_progress {
+    position: absolute;
+    z-index: -1;
+    background-color: white;
+    height: 6px;
+    border-radius: 10px;
+  }
+  .track_range {
+    appearance: none;
+    background-color: white;
+    cursor: pointer;
+    height: 30px;
+    width: 100%;
+    outline: none;
+    background: transparent;
+
+    &::-webkit-slider-thumb {
+      appearance: none;
+      border: none;
+      width: 0px;
+      height: 5px;
+      background-color: white;
+    }
+  }
+}
+
 .track_time {
   color: white;
   display: flex;
   justify-content: space-between;
 }
-.timeline {
-  cursor: pointer;
-  position: relative;
-  width: 100%;
-  height: 6px;
-  background: gray;
-  .progress {
-    background: white;
-    width: 0%;
-    height: 100%;
-    transition: 0.25s;
-  }
-}
 .audio_controls {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  .left_audio_controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%;
+  }
+  .right_audio_controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%;
+  }
   .audio_prev {
     cursor: pointer;
-    background: url("./images/skip.svg") no-repeat center;
+    background: url("./svg/skip.svg") no-repeat center;
     background-size: cover;
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
     opacity: 0.65;
     transform: scale(-1, 1);
     &:hover {
@@ -68,41 +122,111 @@
   }
   .audio_next {
     cursor: pointer;
-    background: url("./images/skip.svg") no-repeat center;
+    background: url("./svg/skip.svg") no-repeat center;
     background-size: cover;
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
     opacity: 0.65;
     &:hover {
       opacity: 1;
     }
   }
   .audio_toggle {
+    width: 35px;
+    height: 35px;
+    opacity: 0.65;
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+      transform: scale(1.2);
+    }
     &.play {
-      border: 4px solid white;
-      border-radius: 50%;
-      cursor: pointer;
-      background: url("./images/play.svg") no-repeat center;
+      background: url("./svg/play.svg") no-repeat center;
       background-size: contain;
-      width: 50px;
-      height: 50px;
-      opacity: 0.65;
-      &:hover {
-        opacity: 1;
-      } // transform: scale(1.1);
     }
     &.pause {
-      border: 4px solid white;
-      border-radius: 50%;
-      cursor: pointer;
-      background: url("./images/pause.svg") no-repeat center;
+      background: url("./svg/pause.svg") no-repeat center;
       background-size: contain;
-      width: 50px;
-      height: 50px;
-      opacity: 0.65;
-      &:hover {
-        opacity: 1;
+    }
+  }
+  .volume_control {
+    width: 170px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    opacity: 0.65;
+    &:hover {
+      opacity: 1;
+    }
+    .volume_slider {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin: 0 15px 0 5px;
+      position: relative;
+      height: 100%;
+      width: 120px;
+    }
+    .volume_line {
+      position: absolute;
+      z-index: -1;
+      background-color: gray;
+      width: 100%;
+      height: 5px;
+    }
+    .volume_progress {
+      position: absolute;
+      z-index: -1;
+      background-color: white;
+      height: 5px;
+    }
+    .volume_input {
+      appearance: none;
+      background-color: white;
+      cursor: pointer;
+      height: 30px;
+      width: 120px;
+      outline: none;
+      background: transparent;
+
+      &::-webkit-slider-thumb {
+        appearance: none;
+        border: none;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: white;
       }
+    }
+
+    .volume_btn {
+      display: flex;
+      justify-self: flex-end;
+      width: 30px;
+      height: 30px;
+      &.high {
+        background: url("./svg/volume-high.svg") no-repeat center;
+        background-size: contain;
+      }
+      &.medium {
+        background: url("./svg/volume-medium.svg") no-repeat center;
+        background-size: contain;
+      }
+      &.mute {
+        background: url("./svg/volume-mute.svg") no-repeat center;
+        background-size: contain;
+      }
+    }
+  }
+  .playlist {
+    cursor: pointer;
+    background: url("./svg/playlist-play.svg") no-repeat center;
+    background-size: contain;
+    width: 35px;
+    height: 35px;
+    opacity: 0.65;
+    &:hover {
+      opacity: 1;
     }
   }
 }

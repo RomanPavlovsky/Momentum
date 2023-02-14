@@ -9,29 +9,41 @@
     <header>
       <div class="audio_player">
         <div class="track_discription">
+          <div class="track_author"></div>
           <div class="track_title">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui omnis
-            impedit ab perferendis autem minima iste cumque aspernatur ullam,
-            porro maxime non odit dolores architecto! Animi vel repellendus
-            voluptatibus facilis.
+            TRACK NAME .... TRACK NAME .... TRACK NAME .... TRACK NAME ... TRACK
+            NAME
           </div>
-          <div class="track_author">Track author</div>
         </div>
-        <div class="wave"></div>
-        <div class="timeline">
-          <div class="progress"></div>
+        <div class="track_timeline">
+          <div class="track_line"></div>
+          <input type="range" value="100" step="1" class="track_range" />
+          <div class="track_progress"></div>
         </div>
         <div class="track_time">
-          <div class="track_current_time">0:00</div>
-          <div class="track_length">0:00</div>
+          <div class="track_current_time"></div>
+          <div class="track_length"></div>
         </div>
         <div class="audio_controls">
-          <div class="audio_prev"></div>
-          <div class="audio_toggle play"></div>
-          <div class="audio_next"></div>
+          <div class="left_audio_controls">
+            <div class="audio_prev"></div>
+            <div class="audio_toggle play"></div>
+            <div class="audio_next"></div>
+          </div>
+          <div class="right_audio_controls">
+            <div class="volume_control">
+              <div class="volume_btn"></div>
+              <div class="volume_slider">
+                <div class="volume_line"></div>
+                <input type="range" value="volume" class="volume_input" />
+                <div class="volume_progress"></div>
+              </div>
+            </div>
+            <div class="playlist"></div>
+          </div>
         </div>
-        <div class="valume"></div>
       </div>
+
       <div class="user_weather">
         <input
           type="text"
@@ -51,11 +63,11 @@
     </header>
     <main>
       <div class="user_date">
-        <div class="time">00:00:00</div>
-        <div class="date">01:01:1970</div>
+        <div class="time"></div>
+        <div class="date"></div>
       </div>
       <div class="user_greeting">
-        <p class="greeting">Hello,</p>
+        <p class="greeting"></p>
         <input class="name" type="text" placeholder="[Enter name]" />
       </div>
       <i class="slider_prev"></i>
@@ -65,13 +77,8 @@
       <div class="settings"></div>
       <div class="quote">
         <button class="quote_refresh"></button>
-        <h2 class="quote_text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, ratione
-          error corrupti sed, dicta sequi possimus nisi dignissimos porro veniam
-          consequuntur repudiandae placeat accusamus perferendis quae inventore
-          accusantium illum suscipit.
-        </h2>
-        <h3 class="quote_author">Quote author</h3>
+        <h2 class="quote_text"></h2>
+        <h3 class="quote_author"></h3>
       </div>
     </footer>
     <div class="dark_filter"></div>
