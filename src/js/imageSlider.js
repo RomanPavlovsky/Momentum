@@ -1,6 +1,7 @@
 import { timeDay } from "./userTime";
 const nextSlide = document.querySelector(".slider_next");
 const prevSlide = document.querySelector(".slider_prev");
+const filter = document.querySelector(".dark_filter");
 
 const getLinkImages = async (timeDay) => {
   const timeDayUrls = {
@@ -20,7 +21,15 @@ const getLinkImages = async (timeDay) => {
 const slider = (arrImages) => {
   let id = 0;
   const slide = (id) => {
-    document.body.style.backgroundImage = `url(${arrImages[id].urls.regular})`;
+    const img = new Image();
+    img.src = arrImages[id].urls.regular;
+    img.addEventListener("load", () => {
+      document.body.style.backgroundImage = `url(${img.src})`;
+    });
+    filter.classList.add("fade");
+    setTimeout(() => {
+      filter.classList.remove("fade");
+    }, 550);
   };
   prevSlide.addEventListener("click", () => {
     id--;
