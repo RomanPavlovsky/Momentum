@@ -1,4 +1,3 @@
-const quote = document.querySelector(".quote");
 const quote_refresh = document.querySelector(".quote_refresh");
 
 const getQuote = async () => {
@@ -11,11 +10,10 @@ const getQuote = async () => {
     }
   );
   const data = await res.json();
-  console.log(data);
   setTimeout(() => {
     document.querySelector(".quote_text").textContent = data.quoteText;
     document.querySelector(".quote_author").textContent = data.quoteAuthor;
-  }, 100);
+  }, 250);
 };
 getQuote();
 

@@ -25,11 +25,11 @@ const slider = (arrImages) => {
     img.src = arrImages[id].urls.regular;
     img.addEventListener("load", () => {
       document.body.style.backgroundImage = `url(${img.src})`;
+      filter.classList.add("fade");
+      setTimeout(() => {
+        filter.classList.remove("fade");
+      }, 550);
     });
-    filter.classList.add("fade");
-    setTimeout(() => {
-      filter.classList.remove("fade");
-    }, 550);
   };
   prevSlide.addEventListener("click", () => {
     id--;

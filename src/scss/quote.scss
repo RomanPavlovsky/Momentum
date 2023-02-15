@@ -1,4 +1,5 @@
-.quote {
+.quote_container {
+  // background-color: aquamarine;
   width: 80%;
   display: flex;
   flex-direction: column;
@@ -8,12 +9,13 @@
 }
 
 .quote_refresh {
+  display: block;
   margin: 20px;
   outline: none;
   border: none;
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  width: 2rem;
+  height: 2rem;
   background: url("./svg/refresh.svg") no-repeat;
   opacity: 0.65;
 
@@ -34,10 +36,13 @@
   }
 }
 .quote_text {
+  display: block;
   text-align: center;
   font-size: 28px;
 }
 .quote_author {
+  padding: 25px;
+  display: block;
   font-size: 28px;
   font-style: italic;
 }
