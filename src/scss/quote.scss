@@ -1,6 +1,6 @@
 .quote_container {
   // background-color: aquamarine;
-  width: 80%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,11 +38,11 @@
 .quote_text {
   display: block;
   text-align: center;
-  font-size: 28px;
+  font-size: 1.5rem;
 }
 .quote_author {
   padding: 25px;
   display: block;
-  font-size: 28px;
+  font-size: 1.5rem;
   font-style: italic;
 }
