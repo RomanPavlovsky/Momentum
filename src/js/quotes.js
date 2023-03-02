@@ -5,7 +5,7 @@ const getQuote = async () => {
     "https://cors.eu.org/https://api.forismatic.com/api/1.0/",
     {
       headers: { "content-type": "application/x-www-form-urlencoded" },
-      body: "method=getQuote&format=json&lang=ru",
+      body: `method=getQuote&format=json&lang=${localStorage.lang}`,
       method: "POST",
     }
   );

@@ -45,9 +45,10 @@
         <input
           type="text"
           class="city_input"
-          value="text"
           placeholder="[Enter city]"
+          autocomplete="off"
         />
+        <ul class="autocomplete_list"></ul>
         <div class="weather_main_info">
           <div class="temp"></div>
           <div class="icon_weather"></div>
@@ -89,26 +90,98 @@
           </div>
           <div class="lang_open_container">
             <div class="back_btn"></div>
-            <div class="">
-              <label class="container"
-                >One
-                <input type="radio" checked="checked" name="radio" />
-                <span class="checkmark"></span>
+            <h3 class="tittle_settings">Language:</h3>
+            <div class="lang_container">
+              <label class="label_settings">
+                <input
+                  class="input_settings"
+                  type="radio"
+                  checked="checked"
+                  name="lang"
+                  value="en"
+                />
+                <span class="custom_radio"></span>
+                Eng
               </label>
-              <label class="container"
-                >Two
-                <input type="radio" name="radio" />
-                <span class="checkmark"></span>
+              <label class="label_settings">
+                <input
+                  class="input_settings"
+                  type="radio"
+                  name="lang"
+                  value="ru"
+                />
+                <span class="custom_radio"></span> Рус
               </label>
             </div>
           </div>
           <div class="elements_open_container">
             <div class="back_btn"></div>
-            <div>TEXT2</div>
+            <div class="tittle_settings">Desktop elements:</div>
+            <div class="elements_container">
+              <div class="toggle_wrapper">
+                <p>audioplayer</p>
+                <label class="label_toggle">
+                  <input class="input_toggle" type="checkbox" />
+                  <span class="custom_toggle"></span>
+                </label>
+              </div>
+              <div class="toggle_wrapper">
+                <p>weather</p>
+                <label class="label_toggle">
+                  <input class="input_toggle" type="checkbox" />
+                  <span class="custom_toggle"></span>
+                </label>
+              </div>
+              <div class="toggle_wrapper">
+                <p>quotes</p>
+                <label class="label_toggle">
+                  <input class="input_toggle" type="checkbox" />
+                  <span class="custom_toggle"></span>
+                </label>
+              </div>
+              <div class="toggle_wrapper">
+                <p>greeting</p>
+                <label class="label_toggle">
+                  <input class="input_toggle" type="checkbox" />
+                  <span class="custom_toggle"></span>
+                </label>
+              </div>
+            </div>
           </div>
           <div class="images_open_container">
             <div class="back_btn"></div>
-            <div>TEXT3</div>
+            <h3 class="tittle_settings">Image slider API:</h3>
+            <div class="images_container">
+              <label class="label_settings">
+                <input
+                  class="input_settings"
+                  type="radio"
+                  name="img"
+                  checked="cheked"
+                  value="unsplash"
+                />
+                <span class="custom_radio"></span>
+                Unsplash API
+              </label>
+              <label class="label_settings">
+                <input
+                  class="input_settings"
+                  type="radio"
+                  name="img"
+                  value="github"
+                />
+                <span class="custom_radio"></span> Flickr API
+              </label>
+              <label class="label_settings">
+                <input
+                  class="input_settings"
+                  type="radio"
+                  name="img"
+                  value="Flickr"
+                />
+                <span class="custom_radio"></span> GitHub
+              </label>
+            </div>
           </div>
         </div>
       </div>

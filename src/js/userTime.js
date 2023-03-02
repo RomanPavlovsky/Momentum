@@ -1,11 +1,11 @@
 const showUserTime = () => {
   let userDate = new Date();
-  let ruTime = userDate.toLocaleTimeString("ru");
-  let date = userDate.toLocaleDateString("ru");
+  let time = userDate.toLocaleTimeString(localStorage.lang);
+  let date = userDate.toLocaleDateString(localStorage.lang);
   let hours = userDate.getHours();
   let minutes = userDate.getMinutes();
   document.querySelector(".date").textContent = date;
-  document.querySelector(".time").textContent = ruTime;
+  document.querySelector(".time").textContent = time;
   setTimeout(showUserTime, 1000);
   return hours * 60 + minutes;
 };
