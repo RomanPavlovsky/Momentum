@@ -7,190 +7,227 @@
   </head>
   <body>
     <header>
-      <div class="audio_player">
-        <div class="track_discription">
-          <div class="track_author"></div>
-          <div class="track_title"></div>
-        </div>
-        <div class="track_timeline">
-          <div class="track_line"></div>
-          <input type="range" value="100" step="1" class="track_range" />
-          <div class="track_progress"></div>
-        </div>
-        <div class="track_time">
-          <div class="track_current_time"></div>
-          <div class="track_length"></div>
-        </div>
-        <div class="audio_controls">
-          <div class="left_audio_controls">
-            <div class="audio_prev"></div>
-            <div class="audio_toggle play"></div>
-            <div class="audio_next"></div>
+      <div class="audioplayer">
+        <div class="audioplayer__wrapper">
+          <div class="audioplayer__track-description track-description">
+            <div class="track-description__author"></div>
+            <div class="track-description__title"></div>
           </div>
-          <div class="right_audio_controls">
-            <div class="volume_control">
-              <div class="volume_btn"></div>
-              <div class="volume_slider">
-                <div class="volume_line"></div>
-                <input type="range" value="volume" class="volume_input" />
-                <div class="volume_progress"></div>
-              </div>
+          <div class="audioplayer__track-timeline track-timeline">
+            <div class="track-timeline__line"></div>
+            <input
+              class="track-timeline__input-range"
+              type="range"
+              value="100"
+              step="1"
+            />
+            <div class="track-timeline__progress"></div>
+          </div>
+          <div class="audioplayer__track-time track-time">
+            <div class="track-time__current-time"></div>
+            <div class="track-time__length"></div>
+          </div>
+          <div class="audioplayer__audio-controls audio-controls">
+            <div class="audio-controls__left-side">
+              <div class="audio-controls__prev"></div>
+              <div class="audio-controls__toggle toggle_play"></div>
+              <div class="audio-controls__next"></div>
             </div>
-            <div class="playlist"></div>
+            <div class="audio-controls__right-side">
+              <div class="audio-controls__volume volume">
+                <div class="volume__button"></div>
+                <div class="volume__control">
+                  <div class="volume__line"></div>
+                  <input
+                    class="volume__input-range"
+                    type="range"
+                    value="volume"
+                  />
+                  <div class="volume__progress"></div>
+                </div>
+              </div>
+              <div class="audio-controls__playlist"></div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="user_weather">
-        <input
-          type="text"
-          class="city_input"
-          placeholder="[Enter city]"
-          autocomplete="off"
-        />
-        <ul class="autocomplete_list"></ul>
-        <div class="weather_main_info">
-          <div class="temp"></div>
-          <div class="icon_weather"></div>
-          <div class="discription"></div>
+      <div class="weather">
+        <div class="weather__wrapper">
+          <input
+            class="weather__city-input"
+            type="text"
+            placeholder="[Enter city]"
+            autocomplete="off"
+          />
+          <ul class="weather__autocomplete-list"></ul>
+          <div class="weather__main-info">
+            <div class="weather__temp"></div>
+            <div class="weather__icon"></div>
+            <div class="weather__description"></div>
+          </div>
+          <div class="weather__wind"></div>
+          <div class="weather__humidity"></div>
         </div>
-        <div class="wind_info"></div>
-        <div class="humidity_info"></div>
       </div>
     </header>
     <main>
-      <div class="user_date">
-        <div class="time"></div>
-        <div class="date"></div>
+      <div class="user-date">
+        <div class="user-date__time"></div>
+        <div class="user-date__date"></div>
       </div>
-      <div class="user_greeting">
-        <p class="greeting"></p>
-        <input class="name" type="text" placeholder="[Enter name]" />
+      <div class="greeting">
+        <div class="greeting__wrapper">
+          <p class="greeting__title"></p>
+          <input
+            class="greeting__name-input"
+            type="text"
+            placeholder="[Enter name]"
+          />
+        </div>
       </div>
       <i class="slider_prev"></i>
       <i class="slider_next"></i>
     </main>
     <footer>
-      <div class="settings_container">
-        <div class="settings_btn"></div>
-        <div class="settings_modal">
-          <div class="settings_wrapper">
-            <div class="lang_settings">
-              <div class="lang_info">Language: ENG</div>
+      <div class="settings">
+        <div class="settings__button"></div>
+        <div class="settings__modal modal">
+          <div class="modal__menu menu">
+            <div class="menu__language-section language-section">
+              <div class="language-section__info">Language: ENG</div>
               <div class="arrow"></div>
             </div>
-            <div class="elements_settings">
-              <div class="elements_info">elements: show all</div>
+            <div class="menu__elements-section elements-section">
+              <div class="elements-section__info">elements: show all</div>
               <div class="arrow"></div>
             </div>
-            <div class="images_settings">
-              <div class="images_info">input img: unsplash</div>
+            <div class="menu__images-section images-section">
+              <div class="images-section__info">input img: unsplash</div>
               <div class="arrow"></div>
             </div>
           </div>
-          <div class="lang_open_container">
-            <div class="back_btn"></div>
-            <h3 class="tittle_settings">Language:</h3>
-            <div class="lang_container">
-              <label class="label_settings">
+          <div class="modal__language-window language-window">
+            <div class="back-button"></div>
+            <div class="language-window__title">Language:</div>
+            <div class="language-window__wrapper">
+              <label class="radio-checkbox">
                 <input
-                  class="input_settings"
+                  class="radio-checkbox__input"
                   type="radio"
                   checked="checked"
                   name="lang"
                   value="en"
                 />
-                <span class="custom_radio"></span>
+                <span class="radio-checkbox__custom"></span>
                 Eng
               </label>
-              <label class="label_settings">
+              <label class="radio-checkbox">
                 <input
-                  class="input_settings"
+                  class="radio-checkbox__input"
                   type="radio"
                   name="lang"
                   value="ru"
                 />
-                <span class="custom_radio"></span> Рус
+                <span class="radio-checkbox__custom"></span> Рус
               </label>
             </div>
           </div>
-          <div class="elements_open_container">
-            <div class="back_btn"></div>
-            <div class="tittle_settings">Desktop elements:</div>
-            <div class="elements_container">
-              <div class="toggle_wrapper">
-                <p>audioplayer</p>
-                <label class="label_toggle">
-                  <input class="input_toggle" type="checkbox" />
-                  <span class="custom_toggle"></span>
+          <div class="modal__elements-window elements-window">
+            <div class="back-button"></div>
+            <div class="elements-window__title">Desktop elements:</div>
+            <div class="elements-window__wrapper">
+              <div class="elements-window__audio">
+                <p class="elements-window__description">audioplayer</p>
+                <label class="toggle">
+                  <input
+                    class="toggle__input"
+                    type="checkbox"
+                    checked="checked"
+                  />
+                  <span class="toggle__custom"></span>
                 </label>
               </div>
-              <div class="toggle_wrapper">
-                <p>weather</p>
-                <label class="label_toggle">
-                  <input class="input_toggle" type="checkbox" />
-                  <span class="custom_toggle"></span>
+              <div class="elements-window__weather">
+                <p class="elements-window__description">weather</p>
+                <label class="toggle">
+                  <input
+                    class="toggle__input"
+                    type="checkbox"
+                    checked="checked"
+                  />
+                  <span class="toggle__custom"></span>
                 </label>
               </div>
-              <div class="toggle_wrapper">
-                <p>quotes</p>
-                <label class="label_toggle">
-                  <input class="input_toggle" type="checkbox" />
-                  <span class="custom_toggle"></span>
+              <div class="elements-window__quote">
+                <p class="elements-window__description">quotes</p>
+                <label class="toggle">
+                  <input
+                    class="toggle__input"
+                    type="checkbox"
+                    checked="checked"
+                  />
+                  <span class="toggle__custom"></span>
                 </label>
               </div>
-              <div class="toggle_wrapper">
-                <p>greeting</p>
-                <label class="label_toggle">
-                  <input class="input_toggle" type="checkbox" />
-                  <span class="custom_toggle"></span>
+              <div class="elements-window__greeting">
+                <p class="elements-window__description">greeting</p>
+                <label class="toggle">
+                  <input
+                    class="toggle__input"
+                    type="checkbox"
+                    checked="checked"
+                  />
+                  <span class="toggle__custom"></span>
                 </label>
               </div>
             </div>
           </div>
-          <div class="images_open_container">
-            <div class="back_btn"></div>
-            <h3 class="tittle_settings">Image slider API:</h3>
-            <div class="images_container">
-              <label class="label_settings">
+          <div class="modal__images-window images-window">
+            <div class="back-button"></div>
+            <div class="images-window__title">Image slider API:</div>
+            <div class="images-window__wrapper">
+              <label class="radio-checkbox">
                 <input
-                  class="input_settings"
+                  class="radio-checkbox__input"
                   type="radio"
                   name="img"
                   checked="cheked"
                   value="unsplash"
                 />
-                <span class="custom_radio"></span>
+                <span class="radio-checkbox__custom"></span>
                 Unsplash API
               </label>
-              <label class="label_settings">
+              <label class="radio-checkbox">
                 <input
-                  class="input_settings"
+                  class="radio-checkbox__input"
                   type="radio"
                   name="img"
                   value="github"
                 />
-                <span class="custom_radio"></span> Flickr API
+                <span class="radio-checkbox__custom"></span> Flickr API
               </label>
-              <label class="label_settings">
+              <label class="radio-checkbox">
                 <input
-                  class="input_settings"
+                  class="radio-checkbox__input"
                   type="radio"
                   name="img"
                   value="Flickr"
                 />
-                <span class="custom_radio"></span> GitHub
+                <span class="radio-checkbox__custom"></span> GitHub
               </label>
             </div>
           </div>
         </div>
       </div>
-      <div class="quote_container">
-        <button class="quote_refresh"></button>
-        <h2 class="quote_text"></h2>
-        <h3 class="quote_author"></h3>
+      <div class="quote">
+        <div class="quote__wrapper">
+          <div class="quote__refresh"></div>
+          <div class="quote__text"></div>
+          <div class="quote__author"></div>
+        </div>
       </div>
     </footer>
-    <div class="dark_filter"></div>
+    <div class="dark-filter"></div>
   </body>
 </html>

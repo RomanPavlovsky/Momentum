@@ -1,6 +1,10 @@
-const cityInput = document.querySelector(".city_input");
-const autocompleteList = document.querySelector(".autocomplete_list");
-
+const cityInput = document.querySelector(".weather__city-input");
+const autocompleteList = document.querySelector(".weather__autocomplete-list");
+const temp = document.querySelector(".weather__temp");
+const iconWeather = document.querySelector(".weather__icon");
+const descriptionWeather = document.querySelector(".weather__description");
+const wind = document.querySelector(".weather__wind");
+const humidity = document.querySelector(".weather__humidity");
 // autocomplete
 let autocomplete = [];
 const getCityAutocomplete = async (value) => {
@@ -80,20 +84,13 @@ const getUserWeather = async (location) => {
     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}&lang=${localStorage.lang}`
   );
   const data = await res.json();
-  document.querySelector(".temp").innerHTML =
-    Math.round(data.main.temp - 273) + "&deg C";
-  document.querySelector(
-    ".icon_weather"
-  ).innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">`;
+  temp.innerHTML = Math.round(data.main.temp - 273) + "&deg C";
+  iconWeather.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">`;
   const description = data.weather[0].description;
-  document.querySelector(".discription").textContent =
+  descriptionWeather.textContent =
     description[0].toUpperCase() + description.slice(1);
-  document.querySelector(".wind_info").textContent = `Wind speed: ${Math.round(
-    data.wind.speed
-  )} m/s`;
-  document.querySelector(
-    ".humidity_info"
-  ).textContent = `Humidity: ${data.main.humidity}%`;
+  wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
+  humidity.textContent = `Humidity: ${data.main.humidity}%`;
 };
 export const start = async () => {
   let userLocation = await getUserLocation();

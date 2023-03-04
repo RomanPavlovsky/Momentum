@@ -1,7 +1,7 @@
-import { timeDay } from "./userTime";
+import { timeDay } from "./date";
 const nextSlide = document.querySelector(".slider_next");
 const prevSlide = document.querySelector(".slider_prev");
-const filter = document.querySelector(".dark_filter");
+const filter = document.querySelector(".dark-filter");
 
 const getLinkImages = async (timeDay) => {
   const timeDayUrls = {

@@ -1,8 +1,9 @@
-import { timeDay } from "./userTime";
-const name = document.querySelector(".name");
+import { timeDay } from "./date";
+const name = document.querySelector(".greeting__name-input");
+const greeting = document.querySelector(".greeting__title");
 
 const showGreeting = () => {
-  document.querySelector(".greeting").textContent = `Good ${timeDay},`;
+  greeting.textContent = `Good ${timeDay},`;
   setTimeout(showGreeting, 1000);
 };
 

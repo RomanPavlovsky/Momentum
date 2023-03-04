@@ -1,255 +1,265 @@
-.settings_btn {
-  cursor: pointer;
-  position: absolute;
-  z-index: 5;
-  left: 15;
-  bottom: 15;
-  background: url("./svg/setting.svg");
-  background-size: cover;
-  width: 30px;
-  height: 30px;
-  opacity: 0.65;
-  &:hover {
-    opacity: 1;
-  }
-  &.active {
-    opacity: 1;
-    animation: 0.6s ease-in-out 1 on;
-    @keyframes on {
-      from {
-        transform: rotate(180deg);
-      }
-
-      to {
-        transform: rotate(360deg);
-      }
-    }
-  }
-  &.unactive {
-    animation: 0.6s ease-in-out 1 off;
-    @keyframes off {
-      from {
-        transform: rotate(360deg);
-      }
-
-      to {
-        transform: rotate(180deg);
-      }
-    }
-  }
-}
-.settings_modal {
-  background-color: rgba(128, 128, 128, 0.5);
-  border-radius: 10%;
-  opacity: 0;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  position: fixed;
-  left: 0;
-  bottom: 35px;
-  width: 0px;
-  height: 200px;
-  transition: all 0.3s linear;
-  &.active {
-    opacity: 1;
-    left: 5px;
-    transform: scale(1);
-    width: 250px;
-  }
-}
-.settings_wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  position: absolute;
-  opacity: 1;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.lang_settings,
-.images_settings,
-.elements_settings {
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex: 1 1 auto;
-  white-space: nowrap;
-  padding-left: 10px;
-  width: 100%;
-  &:hover {
-    background-color: rgba(128, 128, 128, 0.2);
-  }
-  &:hover .arrow {
-    opacity: 1;
-  }
-  .lang_info,
-  .images_info,
-  .elements_info {
-    display: flex;
-    justify-content: space-around;
-  }
-  .arrow {
-    width: 2rem;
-    height: 2rem;
-    background: url("./svg/arrow-right.svg") no-repeat center;
-    background-size: cover;
-    opacity: 0.65;
-  }
-}
-.lang_open_container,
-.images_open_container,
-.elements_open_container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  white-space: nowrap;
-  opacity: 0;
-  z-index: 1;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  transition: all 0.1s linear;
-  .back_btn {
-    position: absolute;
-    top: 10px;
-    left: 10px;
+.settings {
+  &__button {
     cursor: pointer;
-    width: 1.5rem;
-    height: 1.5rem;
-    background: url("./svg/arrow-back.svg") no-repeat center;
+    position: absolute;
+    z-index: 5;
+    left: 15;
+    bottom: 15;
+    background: url("./svg/setting.svg");
     background-size: cover;
+    width: 30px;
+    height: 30px;
     opacity: 0.65;
     &:hover {
       opacity: 1;
     }
-  }
-  .tittle_settings {
-    padding: 20px;
-    font-size: 1.2rem;
-    text-align: center;
-    width: 100%;
-  }
-  .lang_container {
-    padding: 20px;
-    width: 80%;
-    height: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-  }
-  .images_container {
-    height: 50%;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: flex-start;
-  }
-  .elements_container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 50%;
-    width: 60%;
-  }
-  //toggler
-  .toggle_wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .label_toggle {
-    cursor: pointer;
-    width: 40px;
-    height: 20px;
-    background-color: rgba(183, 183, 183, 0);
-    border-radius: 8px;
-  }
-  .input_toggle {
-    width: 0;
-    height: 0;
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-  }
-  .custom_toggle {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(183, 183, 183, 0.3);
-    transition: 0.4s;
-    &::before {
-      content: "";
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      height: 16px;
-      width: 16px;
-      transition: 0.4s;
-      background-color: rgb(54, 54, 54);
-      border-radius: 7px;
-    }
-  }
-  .input_toggle:checked + .custom_toggle {
-    background-color: rgb(54, 54, 54, 0.7);
-  }
-  .input_toggle:checked + .custom_toggle::before {
-    transform: translateX(19px);
-    background-color: white;
-  }
+    &.active {
+      opacity: 1;
+      animation: 0.6s ease-in-out 1 on;
+      @keyframes on {
+        from {
+          transform: rotate(180deg);
+        }
 
-  //radio box
-  .label_settings {
-    cursor: pointer;
-    &:hover .custom_radio:before {
-      opacity: 0.5;
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    }
+    &.unactive {
+      animation: 0.6s ease-in-out 1 off;
+      @keyframes off {
+        from {
+          transform: rotate(360deg);
+        }
+
+        to {
+          transform: rotate(180deg);
+        }
+      }
     }
   }
-  .input_settings {
-    width: 0;
-    height: 0;
-    position: absolute;
-    z-index: -1;
+  &__modal {
+    background-color: rgba(128, 128, 128, 0.5);
+    border-radius: 10%;
     opacity: 0;
-  }
-  .custom_radio {
-    position: relative;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border-radius: 7px;
-    background-color: rgb(54, 54, 54);
-    vertical-align: text-bottom;
-    &:hover:before {
-      opacity: 0.5;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: fixed;
+    left: 0;
+    bottom: 35px;
+    width: 0px;
+    height: 200px;
+    transition: all 0.3s linear;
+    &.active {
+      opacity: 1;
+      left: 5px;
+      transform: scale(1);
+      width: 250px;
     }
-    &::before {
+  }
+  .modal {
+    &__menu {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
       position: absolute;
-      top: 50%;
-      left: 50%;
-      content: "";
-      width: 15px;
-      height: 15px;
-      background-color: rgb(255, 255, 255);
-      border-radius: 5px;
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      transition: opacity 0.1s linear;
+      opacity: 1;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      .language-section,
+      .images-section,
+      .elements-section {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex: 1 1 auto;
+        white-space: nowrap;
+        padding-left: 10px;
+        width: 100%;
+        &:hover {
+          background-color: rgba(128, 128, 128, 0.2);
+        }
+        &:hover .arrow {
+          opacity: 1;
+        }
+        .language-section__info,
+        .images-section__info,
+        .elements-section__info {
+          display: flex;
+          justify-content: space-around;
+        }
+        .arrow {
+          width: 2rem;
+          height: 2rem;
+          background: url("./svg/arrow-right.svg") no-repeat center;
+          background-size: cover;
+          opacity: 0.65;
+        }
+      }
     }
-  }
-  .input_settings:checked + .custom_radio::before {
-    opacity: 1;
+    &__language-window,
+    &__images-window,
+    &__elements-window {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      white-space: nowrap;
+      opacity: 0;
+      z-index: 1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      transition: all 0.1s linear;
+      .back-button {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        cursor: pointer;
+        width: 1.5rem;
+        height: 1.5rem;
+        background: url("./svg/arrow-back.svg") no-repeat center;
+        background-size: cover;
+        opacity: 0.65;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+    .language-window__title,
+    .images-window__title,
+    .elements-window__title {
+      padding: 20px;
+      font-size: 1.2rem;
+      text-align: center;
+      width: 100%;
+    }
+    .language-window__wrapper {
+      padding: 20px;
+      width: 80%;
+      height: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+    .images-window__wrapper {
+      height: 50%;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: flex-start;
+    }
+    .elements-window__wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      height: 50%;
+      width: 80%;
+    }
+    //toggle elements
+    .elements-window__audio,
+    .elements-window__weather,
+    .elements-window__greeting,
+    .elements-window__quote {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .toggle {
+      cursor: pointer;
+      width: 40px;
+      height: 20px;
+      background-color: rgba(183, 183, 183, 0);
+      border-radius: 8px;
+
+      &__input {
+        width: 0;
+        height: 0;
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+      }
+      &__custom {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(183, 183, 183, 0.3);
+        transition: 0.4s;
+        &::before {
+          content: "";
+          position: absolute;
+          top: 2px;
+          left: 2px;
+          height: 16px;
+          width: 16px;
+          transition: 0.4s;
+          background-color: rgb(54, 54, 54);
+          border-radius: 7px;
+        }
+      }
+      &__input:checked + .toggle__custom {
+        background-color: rgb(54, 54, 54, 0.7);
+      }
+      &__input:checked + .toggle__custom::before {
+        transform: translateX(19px);
+        background-color: white;
+      }
+    }
+
+    //radio box
+    .radio-checkbox {
+      cursor: pointer;
+      &:hover .radio-checkbox__custom::before {
+        opacity: 0.5;
+      }
+      &__input {
+        width: 0;
+        height: 0;
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+      }
+      &__custom {
+        position: relative;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-radius: 7px;
+        background-color: rgb(54, 54, 54);
+        vertical-align: text-bottom;
+        &:hover:before {
+          opacity: 0.5;
+        }
+        &::before {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          content: "";
+          width: 15px;
+          height: 15px;
+          background-color: rgb(255, 255, 255);
+          border-radius: 5px;
+          transform: translate(-50%, -50%);
+          opacity: 0;
+          transition: opacity 0.1s linear;
+        }
+      }
+      &__input:checked + .radio-checkbox__custom::before {
+        opacity: 1;
+      }
+    }
   }
 }

@@ -1,23 +1,25 @@
-.user_greeting {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .greeting {
-  user-select: none;
-  color: #ffffff;
-  font-size: 4em;
-  margin-right: 20px;
-}
-.name {
-  width: 360px;
-  outline: none;
-  color: #ffffff;
-  font-size: 4em;
-  border: none;
-  background-color: rgba(128, 128, 128, 0);
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__title {
+    user-select: none;
+    color: #ffffff;
+    font-size: 4em;
+    margin-right: 20px;
+  }
+  &__name-input {
+    width: 360px;
+    outline: none;
+    color: #ffffff;
+    font-size: 4em;
+    border: none;
+    background-color: rgba(128, 128, 128, 0);
 
-  &::placeholder {
-    color: rgb(74, 74, 74);
+    &::placeholder {
+      color: rgb(74, 74, 74);
+    }
   }
 }

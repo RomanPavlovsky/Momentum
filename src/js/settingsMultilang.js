@@ -1,9 +1,11 @@
-import getQuote from "./quotes";
-import { start } from "./userWeather";
-const langInput = document.querySelectorAll(".lang_container .input_settings");
-const langContainer = document.querySelector(".lang_container");
+import getQuote from "./quote";
+import { start } from "./weather";
+const langInput = document.querySelectorAll(
+  ".language-window__wrapper .radio-checkbox__input"
+);
+const langContainer = document.querySelector(".language-window__wrapper");
 
-const sss = () => {
+const multiLang = () => {
   let chekedLang;
   window.addEventListener("DOMContentLoaded", () => {
     if (localStorage.lang === undefined) {
@@ -28,7 +30,7 @@ const sss = () => {
     localStorage.setItem("lang", chekedLang);
   });
   langContainer.addEventListener("click", (e) => {
-    if (e.target.closest(".input_settings")) {
+    if (e.target.closest(".radio-checkbox__input")) {
       for (let i = 0; i < langInput.length; i++) {
         if (langInput[i].checked) {
           chekedLang = langInput[i].value;
@@ -42,5 +44,5 @@ const sss = () => {
     }
   });
 };
-sss();
-export default sss;
+multiLang();
+export default multiLang;

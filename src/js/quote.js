@@ -1,4 +1,6 @@
-const quote_refresh = document.querySelector(".quote_refresh");
+const refresh = document.querySelector(".quote__refresh");
+const text = document.querySelector(".quote__text");
+const author = document.querySelector(".quote__author");
 
 const getQuote = async () => {
   const res = await fetch(
@@ -11,21 +13,21 @@ const getQuote = async () => {
   );
   const data = await res.json();
   setTimeout(() => {
-    document.querySelector(".quote_text").textContent = data.quoteText;
-    document.querySelector(".quote_author").textContent = data.quoteAuthor;
+    text.textContent = data.quoteText;
+    author.textContent = data.quoteAuthor;
   }, 250);
 };
 getQuote();
 
-quote_refresh.addEventListener("click", () => {
-  quote_refresh.classList.add("active");
+refresh.addEventListener("click", () => {
+  refresh.classList.add("active");
   getQuote();
 });
 
-quote_refresh.addEventListener(
+refresh.addEventListener(
   "animationend",
   () => {
-    quote_refresh.classList.remove("active");
+    refresh.classList.remove("active");
   },
   false
 );

@@ -1,48 +1,49 @@
-.quote_container {
-  // background-color: aquamarine;
+.quote {
   width: 60%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  color: white;
-}
-
-.quote_refresh {
-  display: block;
-  margin: 20px;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  width: 2rem;
-  height: 2rem;
-  background: url("./svg/refresh.svg") no-repeat;
-  opacity: 0.65;
-
-  &:hover {
-    opacity: 1;
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
   }
-  &.active {
-    animation: 0.6s ease-in-out 1 rotate;
-    @keyframes rotate {
-      from {
-        transform: rotate(0deg);
-      }
+  &__refresh {
+    display: block;
+    margin: 20px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url("./svg/refresh.svg") no-repeat;
+    opacity: 0.65;
+    &:hover {
+      opacity: 1;
+    }
+    &.active {
+      animation: 0.6s ease-in-out 1 rotate;
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
 
-      to {
-        transform: rotate(360deg);
+        to {
+          transform: rotate(360deg);
+        }
       }
     }
   }
-}
-.quote_text {
-  display: block;
-  text-align: center;
-  font-size: 1.5rem;
-}
-.quote_author {
-  padding: 25px;
-  display: block;
-  font-size: 1.5rem;
-  font-style: italic;
+  &__text {
+    display: block;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  &__author {
+    padding: 25px;
+    display: block;
+    font-size: 1.5rem;
+    font-style: italic;
+  }
 }

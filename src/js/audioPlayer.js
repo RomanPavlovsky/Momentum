@@ -1,15 +1,15 @@
-const trackTitle = document.querySelector(".track_title");
-const trackAuthor = document.querySelector(".track_author");
-const trackCurrTime = document.querySelector(".track_current_time");
-const trackLength = document.querySelector(".track_length");
-const trackRange = document.querySelector(".track_range");
-const trackProgress = document.querySelector(".track_progress");
-const toggler = document.querySelector(".audio_toggle");
-const volumeBtn = document.querySelector(".volume_btn");
-const volumeSlider = document.querySelector(".volume_input");
-const volumeProgress = document.querySelector(".volume_progress");
-const prevAudio = document.querySelector(".audio_prev");
-const nextAudio = document.querySelector(".audio_next");
+const title = document.querySelector(".track-description__title");
+const author = document.querySelector(".track-description__author");
+const currentTime = document.querySelector(".track-time__current-time");
+const length = document.querySelector(".track-time__length");
+const timelineRange = document.querySelector(".track-timeline__input-range");
+const timelineProgress = document.querySelector(".track-timeline__progress");
+const playToggle = document.querySelector(".audio-controls__toggle");
+const volumeButton = document.querySelector(".volume__button");
+const volumeRange = document.querySelector(".volume__input-range");
+const volumeProgress = document.querySelector(".volume__progress");
+const prev = document.querySelector(".audio-controls__prev");
+const next = document.querySelector(".audio-controls__next");
 
 const getTrack = async () => {
   const res = await fetch(
@@ -47,44 +47,44 @@ const startPlayer = async () => {
     audio = new Audio();
     audio.src = tracks[id].audio;
     audio.addEventListener("loadedmetadata", () => {
-      trackAuthor.textContent = tracks[id].artist_name;
-      trackTitle.textContent = tracks[id].name;
-      trackLength.textContent = getTrackTime(audio.duration);
+      author.textContent = tracks[id].artist_name;
+      title.textContent = tracks[id].name;
+      length.textContent = getTrackTime(audio.duration);
       audio.volume = 0.7;
       volumeProgress.style.width = audio.volume * 100 + "%";
-      volumeSlider.value = audio.volume * 100;
+      volumeRange.value = audio.volume * 100;
       getVolumeIcon();
     });
   };
   addAudio();
-  prevAudio.addEventListener("click", () => {
+  prev.addEventListener("click", () => {
     console.dir(audio);
     console.dir(audio.currentTime);
     audio.pause();
     if (audio.currentTime > 4 && audio.paused === true) {
-      toggler.classList.remove("play");
-      toggler.classList.add("pause");
+      playToggle.classList.remove("toggle_play");
+      playToggle.classList.add("toggle_pause");
       audio.currentTime = 0;
       audio.play();
     } else if (audio.currentTime > 4 && audio.paused === false) {
       audio.currentTime = 0;
       audio.play();
     } else if (audio.currentTime < 4 && id < 0) {
-      toggler.classList.remove("play");
-      toggler.classList.add("pause");
+      playToggle.classList.remove("toggle_play");
+      playToggle.classList.add("toggle_pause");
       id--;
       id = tracks.length - 1;
       addAudio(id);
       audio.play();
     } else {
-      toggler.classList.remove("play");
-      toggler.classList.add("pause");
+      playToggle.classList.remove("toggle_play");
+      playToggle.classList.add("toggle_pause");
       id--;
       addAudio(id);
       audio.play();
     }
   });
-  nextAudio.addEventListener("click", () => {
+  next.addEventListener("click", () => {
     audio.pause();
     id++;
     if (id > tracks.length - 1) {
@@ -92,69 +92,69 @@ const startPlayer = async () => {
     }
     addAudio(id);
     audio.addEventListener("canplay", () => {
-      toggler.classList.remove("play");
-      toggler.classList.add("pause");
+      playToggle.classList.remove("toggle_play");
+      playToggle.classList.add("toggle_pause");
       audio.play();
     });
   });
 
   const getVolumeIcon = () => {
-    if (volumeSlider.value > 50) {
-      volumeBtn.classList.remove("mute");
-      volumeBtn.classList.remove("medium");
-      volumeBtn.classList.add("high");
-    } else if (volumeSlider.value == 0) {
-      volumeBtn.classList.remove("medium");
-      volumeBtn.classList.remove("high");
-      volumeBtn.classList.add("mute");
-    } else if (volumeSlider.value < 50 || volumeSlider.value > 0) {
-      volumeBtn.classList.remove("mute");
-      volumeBtn.classList.remove("high");
-      volumeBtn.classList.add("medium");
+    if (volumeRange.value > 50) {
+      volumeButton.classList.remove("mute");
+      volumeButton.classList.remove("medium");
+      volumeButton.classList.add("high");
+    } else if (volumeRange.value == 0) {
+      volumeButton.classList.remove("medium");
+      volumeButton.classList.remove("high");
+      volumeButton.classList.add("mute");
+    } else if (volumeRange.value < 50 || volumeSlider.value > 0) {
+      volumeButton.classList.remove("mute");
+      volumeButton.classList.remove("high");
+      volumeButton.classList.add("medium");
     }
   };
 
   // rewind track
-  trackRange.addEventListener("input", () => {
-    trackProgress.style.width = trackRange.value + "%";
-    const timeToSeek = (trackRange.value / 100) * audio.duration;
+  timelineRange.addEventListener("input", () => {
+    timelineProgress.style.width = timelineRange.value + "%";
+    const timeToSeek = (timelineRange.value / 100) * audio.duration;
     audio.currentTime = timeToSeek;
   });
   // track playing
   setInterval(() => {
-    trackProgress.style.width =
+    timelineProgress.style.width =
       (audio.currentTime / audio.duration) * 100 + "%";
-    trackCurrTime.textContent = getTrackTime(audio.currentTime);
+    currentTime.textContent = getTrackTime(audio.currentTime);
   });
   // toggle play/stop
-  toggler.addEventListener("click", () => {
+  playToggle.addEventListener("click", () => {
     if (audio.paused) {
-      toggler.classList.remove("play");
-      toggler.classList.add("pause");
+      playToggle.classList.remove("toggle_play");
+      playToggle.classList.add("toggle_pause");
       audio.play();
     } else {
-      toggler.classList.remove("pause");
-      toggler.classList.add("play");
+      playToggle.classList.remove("toggle_pause");
+      playToggle.classList.add("toggle_play");
       audio.pause();
     }
   });
   // volume-slider;
-  volumeSlider.addEventListener("input", () => {
-    volumeProgress.style.width = volumeSlider.value + "%";
-    audio.volume = volumeSlider.value / 100;
+  volumeRange.addEventListener("input", () => {
+    volumeProgress.style.width = volumeRange.value + "%";
+    audio.volume = volumeRange.value / 100;
     getVolumeIcon();
   });
   // volumeButton toggle
-  volumeBtn.addEventListener("click", () => {
+  volumeButton.addEventListener("click", () => {
     if (audio.muted === false) {
       audio.muted = true;
-      volumeSlider.value = 0;
-      volumeProgress.style.width = volumeSlider.value + "%";
+      volumeRange.value = 0;
+      volumeProgress.style.width = volumeRange.value + "%";
       getVolumeIcon();
     } else {
       audio.muted = false;
-      volumeSlider.value = audio.volume * 100;
-      volumeProgress.style.width = volumeSlider.value + "%";
+      volumeRange.value = audio.volume * 100;
+      volumeProgress.style.width = volumeRange.value + "%";
       getVolumeIcon();
     }
   });
