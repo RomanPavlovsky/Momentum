@@ -1,48 +1,38 @@
 import getQuote from "./quote";
 import { start } from "./weather";
-const langInput = document.querySelectorAll(
+const languageButton = document.querySelectorAll(
   ".language-window__wrapper .radio-checkbox__input"
 );
-const langContainer = document.querySelector(".language-window__wrapper");
-
-const multiLang = () => {
-  let chekedLang;
-  window.addEventListener("DOMContentLoaded", () => {
-    if (localStorage.lang === undefined) {
-      for (let i = 0; i < langInput.length; i++) {
-        if (langInput[i].checked) {
-          chekedLang = langInput[i].value;
-          localStorage.setItem("lang", chekedLang);
-          break;
-        }
-      }
-    } else {
-      chekedLang = localStorage.lang;
-      for (let i = 0; i < langInput.length; i++) {
-        if (langInput[i].value == chekedLang) {
-          langInput[i].setAttribute("checked", "checked");
-          break;
-        }
+const languageWindow = document.querySelector(".language-window__wrapper");
+// this solution with old "for" cycle method, can use "forEach"
+const getLanguage = () => {
+  if (localStorage.lang === undefined) {
+    for (let i = 0; i < languageButton.length; i++) {
+      if (languageButton[i].checked) {
+        localStorage.setItem("lang", languageButton[i].value);
+        break;
       }
     }
-  });
-  window.addEventListener("beforeunload", () => {
-    localStorage.setItem("lang", chekedLang);
-  });
-  langContainer.addEventListener("click", (e) => {
+  } else {
+    for (let i = 0; i < languageButton.length; i++) {
+      if (languageButton[i].value === localStorage.lang) {
+        languageButton[i].setAttribute("checked", "checked");
+        break;
+      }
+    }
+  }
+  languageWindow.addEventListener("click", (e) => {
     if (e.target.closest(".radio-checkbox__input")) {
-      for (let i = 0; i < langInput.length; i++) {
-        if (langInput[i].checked) {
-          chekedLang = langInput[i].value;
-          localStorage.setItem("lang", chekedLang);
+      for (let i = 0; i < languageButton.length; i++) {
+        if (languageButton[i].checked) {
+          localStorage.setItem("lang", languageButton[i].value);
           start();
           getQuote();
-          console.log(chekedLang);
           break;
         }
       }
     }
   });
 };
-multiLang();
-export default multiLang;
+getLanguage();
+export default getLanguage;

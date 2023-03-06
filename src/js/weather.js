@@ -29,7 +29,6 @@ const getCityAutocomplete = async (value) => {
     // .slice(0, 3)
     .join("");
   autocompleteList.innerHTML = autocompleteCity;
-  console.log("complete", autocomplete);
 };
 
 autocompleteList.addEventListener("click", (e) => {
@@ -81,9 +80,10 @@ const getUserWeather = async (location) => {
   const lat = location.lat || location[0].latitude;
   const lon = location.lon || location[0].longitude;
   const res = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}&lang=${localStorage.lang}`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.WEATHER_API_KEY}&lang=${localStorage.lang}`
   );
   const data = await res.json();
+  console.log("WEATHER DATA", data);
   temp.innerHTML = Math.round(data.main.temp - 273) + "&deg C";
   iconWeather.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">`;
   const description = data.weather[0].description;

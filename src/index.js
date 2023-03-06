@@ -1,10 +1,11 @@
 import "./main.scss";
-import timeSlider from "./js/imageSlider";
+import getImages from "./js/imageSlider";
 import greeting from "./js/greeting";
 import quotes from "./js/quote";
 import userWeather from "./js/weather";
 import audioPlayer from "./js/audioplayer";
 import settings from "./js/settings";
 import { data } from "./js/settingsMultilang";
-import multiLang from "./js/settingsMultilang";
+import getLanguage from "./js/settingsMultilang";
 import toggleElements from "./js/settingsElements";
+import swapApi from "./js/settingsImages";
