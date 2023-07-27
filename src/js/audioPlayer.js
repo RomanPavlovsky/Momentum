@@ -11,30 +11,35 @@ const volumeProgress = document.querySelector(".volume__progress");
 const prev = document.querySelector(".audio-controls__prev");
 const next = document.querySelector(".audio-controls__next");
 
+// const getTrack = async () => {
+//   const res = await fetch(
+//     `https://api.jamendo.com/v3.0/tracks/?client_id=${process.env.JAMENDO_CLIENT_ID}&format=jsonpretty&limit=50&boost=popularity_total&tags=chill&include=musicinfo&groupby=artist_id`
+//   );
+//   const data = await res.json();
+//   const filterData = await data.results.filter(
+//     (obj) => obj.audio.length > 0 && obj.audiodownload_allowed === true
+//   );
+//   console.log(filterData);
+//   return filterData;
+// };
+
 const getTrack = async () => {
-  const res = await fetch(
-    `https://api.jamendo.com/v3.0/tracks/?client_id=${process.env.JAMENDO_CLIENT_ID}&format=jsonpretty&limit=50&boost=popularity_total&tags=electrohouse&include=musicinfo&groupby=artist_id`
-  );
+  const res = await fetch("http://localhost:3030/music?");
   const data = await res.json();
-  const filterData = await data.results.filter(
-    (obj) => obj.audio.length > 0 && obj.audiodownload_allowed === true
-  );
-  console.log(filterData);
-  return filterData;
+  return data;
 };
 
 const startPlayer = async () => {
   const tracks = await getTrack();
-  let id = Math.floor(Math.random() * 51);
+  let id = Math.floor(Math.random() * 10);
   let audio;
-
+  console.log(tracks);
   const getTrackTime = (num) => {
     let seconds = parseInt(num);
     let minutes = parseInt(seconds / 60);
     seconds -= minutes * 60;
     const hours = parseInt(minutes / 60);
     minutes -= hours * 60;
-
     if (hours === 0) {
       return `${minutes}:${String(seconds % 60).padStart(2, 0)}`;
     } else {
@@ -45,10 +50,10 @@ const startPlayer = async () => {
   };
   const addAudio = async () => {
     audio = new Audio();
-    audio.src = tracks[id].audio;
+    audio.src = tracks[id].url;
     audio.addEventListener("loadedmetadata", () => {
-      author.textContent = tracks[id].artist_name;
-      title.textContent = tracks[id].name;
+      author.textContent = tracks[id].author;
+      title.textContent = tracks[id].title;
       length.textContent = getTrackTime(audio.duration);
       audio.volume = 0.7;
       volumeProgress.style.width = audio.volume * 100 + "%";
@@ -57,47 +62,47 @@ const startPlayer = async () => {
     });
   };
   addAudio();
-  prev.addEventListener("click", () => {
-    console.dir(audio);
-    console.dir(audio.currentTime);
-    audio.pause();
-    if (audio.currentTime > 4 && audio.paused === true) {
-      playToggle.classList.remove("toggle_play");
-      playToggle.classList.add("toggle_pause");
-      audio.currentTime = 0;
-      audio.play();
-    } else if (audio.currentTime > 4 && audio.paused === false) {
-      audio.currentTime = 0;
-      audio.play();
-    } else if (audio.currentTime < 4 && id < 0) {
-      playToggle.classList.remove("toggle_play");
-      playToggle.classList.add("toggle_pause");
-      id--;
-      id = tracks.length - 1;
-      addAudio(id);
-      audio.play();
-    } else {
-      playToggle.classList.remove("toggle_play");
-      playToggle.classList.add("toggle_pause");
-      id--;
-      addAudio(id);
-      audio.play();
+  const audioplay = () => {
+    playToggle.classList.remove("toggle_play");
+    playToggle.classList.add("toggle_pause");
+    audio.play();
+    console.log("startPlay");
+    audio.removeEventListener("canplaythrough", audioplay);
+  };
+  const playPrev = async () => {
+    console.log("audio prev");
+    if (audio.play() !== undefined) {
+      await audio.play();
+      audio.pause();
+      console.log("problem?");
+      if (audio.currentTime > 4) {
+        audio.currentTime = 0;
+        audio.addEventListener("canplaythrough", audioplay);
+      } else if (audio.currentTime < 4) {
+        id--;
+        if (id < 0) {
+          id = tracks.length - 1;
+        }
+        addAudio(id);
+        audio.addEventListener("canplaythrough", audioplay);
+      }
     }
-  });
-  next.addEventListener("click", () => {
-    audio.pause();
-    id++;
-    if (id > tracks.length - 1) {
-      id = 0;
+  };
+  const playNext = async () => {
+    console.log("playnext");
+    if (audio.play() !== undefined) {
+      await audio.play();
+      audio.pause();
+      id++;
+      if (id > tracks.length - 1) {
+        id = 0;
+      }
+      addAudio(id);
+      audio.addEventListener("canplaythrough", audioplay);
     }
-    addAudio(id);
-    audio.addEventListener("canplay", () => {
-      playToggle.classList.remove("toggle_play");
-      playToggle.classList.add("toggle_pause");
-      audio.play();
-    });
-  });
-
+  };
+  next.addEventListener("click", playNext);
+  prev.addEventListener("click", playPrev);
   const getVolumeIcon = () => {
     if (volumeRange.value > 50) {
       volumeButton.classList.remove("mute");
@@ -107,37 +112,64 @@ const startPlayer = async () => {
       volumeButton.classList.remove("medium");
       volumeButton.classList.remove("high");
       volumeButton.classList.add("mute");
-    } else if (volumeRange.value < 50 || volumeSlider.value > 0) {
+    } else if (volumeRange.value < 50 || volumeRange.value > 0) {
       volumeButton.classList.remove("mute");
       volumeButton.classList.remove("high");
       volumeButton.classList.add("medium");
     }
   };
-
-  // rewind track
+  let audioProgress;
+  const GetProgress = (flag) => {
+    if (flag) {
+      audioProgress = setInterval(() => {
+        timelineProgress.style.width =
+          (audio.currentTime / audio.duration) * 100 + "%";
+        currentTime.textContent = getTrackTime(audio.currentTime);
+        if (audio.currentTime === audio.duration) {
+          playNext();
+        }
+      });
+    } else {
+      clearInterval(audioProgress);
+    }
+  };
+  GetProgress(true);
+  // Перемотка трека
+  let timeline;
   timelineRange.addEventListener("input", () => {
     timelineProgress.style.width = timelineRange.value + "%";
-    const timeToSeek = (timelineRange.value / 100) * audio.duration;
-    audio.currentTime = timeToSeek;
+    timeline = (timelineRange.value / 100) * audio.duration;
+    currentTime.textContent = getTrackTime(timeline);
   });
-  // track playing
-  setInterval(() => {
-    timelineProgress.style.width =
-      (audio.currentTime / audio.duration) * 100 + "%";
-    currentTime.textContent = getTrackTime(audio.currentTime);
+  timelineRange.addEventListener("mousedown", () => {
+    GetProgress(false);
   });
+  timelineRange.addEventListener("mouseup", () => {
+    audio.currentTime = timeline;
+    GetProgress(true);
+  });
+  timelineRange.addEventListener("touchstart", () => {
+    GetProgress(false);
+  });
+  timelineRange.addEventListener("touchend", () => {
+    GetProgress(true);
+    audio.currentTime = timeline;
+  });
+
   // toggle play/stop
-  playToggle.addEventListener("click", () => {
+  const playStop = async () => {
     if (audio.paused) {
       playToggle.classList.remove("toggle_play");
       playToggle.classList.add("toggle_pause");
       audio.play();
-    } else {
+    } else if (audio.play() !== undefined) {
+      await audio.play();
       playToggle.classList.remove("toggle_pause");
       playToggle.classList.add("toggle_play");
       audio.pause();
     }
-  });
+  };
+  playToggle.addEventListener("click", playStop);
   // volume-slider;
   volumeRange.addEventListener("input", () => {
     volumeProgress.style.width = volumeRange.value + "%";

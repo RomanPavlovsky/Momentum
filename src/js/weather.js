@@ -1,4 +1,5 @@
 const cityInput = document.querySelector(".weather__city-input");
+const buffer = document.querySelector(".weather__input-buffer");
 const autocompleteList = document.querySelector(".weather__autocomplete-list");
 const temp = document.querySelector(".weather__temp");
 const iconWeather = document.querySelector(".weather__icon");
@@ -26,7 +27,7 @@ const getCityAutocomplete = async (value) => {
         return `<li data-index=${element.id}>${element.city_name_ru}, ${element.country_name_ru} </li>`;
       }
     })
-    // .slice(0, 3)
+    .slice(0, 5)
     .join("");
   autocompleteList.innerHTML = autocompleteCity;
 };
@@ -42,6 +43,10 @@ autocompleteList.addEventListener("click", (e) => {
   getUserWeather(location);
   autocompleteList.innerHTML = "";
 });
+const setInputWidth = () => {
+  buffer.textContent = `${cityInput.value}`;
+  cityInput.style.width = `${buffer.clientWidth}px`;
+};
 
 // Input City
 cityInput.addEventListener("input", () => {
@@ -54,6 +59,7 @@ cityInput.addEventListener("input", () => {
 });
 cityInput.addEventListener("focus", () => {
   cityInput.value = "";
+  cityInput.style.width = "100%";
 });
 cityInput.addEventListener("blur", () => {
   setTimeout(() => {
@@ -61,6 +67,7 @@ cityInput.addEventListener("blur", () => {
       cityInput.value = sessionStorage.getItem("cityInput");
     }
     autocompleteList.innerHTML = "";
+    setInputWidth();
   }, 150);
 });
 
@@ -72,6 +79,7 @@ const getUserLocation = async () => {
   const data = await res.json();
   console.log("IP ЛОКАЦИЯ", data);
   cityInput.value = `${data.city}, ${data.country}`;
+  setInputWidth();
   sessionStorage.setItem("cityInput", `${cityInput.value}`);
   return data;
 };
@@ -89,8 +97,13 @@ const getUserWeather = async (location) => {
   const description = data.weather[0].description;
   descriptionWeather.textContent =
     description[0].toUpperCase() + description.slice(1);
-  wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
-  humidity.textContent = `Humidity: ${data.main.humidity}%`;
+  if (localStorage.lang === "ru") {
+    wind.textContent = `Скорость ветра ${Math.round(data.wind.speed)} м/с`;
+    humidity.textContent = `Влажность: ${data.main.humidity}%`;
+  } else {
+    wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
+    humidity.textContent = `Humidity: ${data.main.humidity}%`;
+  }
 };
 export const start = async () => {
   let userLocation = await getUserLocation();

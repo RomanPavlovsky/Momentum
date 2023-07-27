@@ -1,14 +1,14 @@
-const refresh = document.querySelector(".quote__refresh");
-const text = document.querySelector(".quote__text");
-const author = document.querySelector(".quote__author");
+const refresh = document.querySelector('.quote__refresh');
+const text = document.querySelector('.quote__text');
+const author = document.querySelector('.quote__author');
 
 const getQuote = async () => {
   const res = await fetch(
-    "https://cors.eu.org/https://api.forismatic.com/api/1.0/",
+    'https://corsproxy.io/?https://api.forismatic.com/api/1.0/',
     {
-      headers: { "content-type": "application/x-www-form-urlencoded" },
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
       body: `method=getQuote&format=json&lang=${localStorage.lang}`,
-      method: "POST",
+      method: 'POST',
     }
   );
   const data = await res.json();
@@ -19,15 +19,15 @@ const getQuote = async () => {
 };
 getQuote();
 
-refresh.addEventListener("click", () => {
-  refresh.classList.add("active");
+refresh.addEventListener('click', () => {
+  refresh.classList.add('active');
   getQuote();
 });
 
 refresh.addEventListener(
-  "animationend",
+  'animationend',
   () => {
-    refresh.classList.remove("active");
+    refresh.classList.remove('active');
   },
   false
 );

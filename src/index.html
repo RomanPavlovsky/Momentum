@@ -3,6 +3,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="#" />
     <title>Document</title>
   </head>
   <body>
@@ -60,6 +61,7 @@
             placeholder="[Enter city]"
             autocomplete="off"
           />
+          <div class="weather__input-buffer"></div>
           <ul class="weather__autocomplete-list"></ul>
           <div class="weather__main-info">
             <div class="weather__temp"></div>
@@ -84,6 +86,7 @@
             type="text"
             placeholder="[Enter name]"
           />
+          <div class="greeting__input-buffer"></div>
         </div>
       </div>
       <i class="slider-prev"></i>
@@ -95,21 +98,21 @@
         <div class="settings__modal modal">
           <div class="modal__menu menu">
             <div class="menu__language-section language-section">
-              <div class="language-section__info">Language</div>
+              <div class="language-section__title"></div>
               <div class="arrow"></div>
             </div>
             <div class="menu__elements-section elements-section">
-              <div class="elements-section__info">Desctop control</div>
+              <div class="elements-section__title"></div>
               <div class="arrow"></div>
             </div>
             <div class="menu__images-section images-section">
-              <div class="images-section__info">App walpappers</div>
+              <div class="images-section__title"></div>
               <div class="arrow"></div>
             </div>
           </div>
           <div class="modal__language-window language-window">
             <div class="back-button"></div>
-            <div class="language-window__title">Language:</div>
+            <div class="language-window__title"></div>
             <div class="language-window__wrapper">
               <label class="radio-checkbox">
                 <input
@@ -135,10 +138,10 @@
           </div>
           <div class="modal__elements-window elements-window">
             <div class="back-button"></div>
-            <div class="elements-window__title">Desktop elements:</div>
+            <div class="elements-window__title"></div>
             <div class="elements-window__wrapper">
-              <div class="elements-window__audio">
-                <p class="elements-window__description">audioplayer</p>
+              <div class="elements-window__player">
+                <p class="elements-window__name">Audioplayer</p>
                 <label class="toggle">
                   <input
                     class="toggle__input"
@@ -150,7 +153,7 @@
                 </label>
               </div>
               <div class="elements-window__weather">
-                <p class="elements-window__description">weather</p>
+                <p class="elements-window__name">Weather</p>
                 <label class="toggle">
                   <input
                     class="toggle__input"
@@ -162,7 +165,7 @@
                 </label>
               </div>
               <div class="elements-window__quote">
-                <p class="elements-window__description">quotes</p>
+                <p class="elements-window__name">Quotes</p>
                 <label class="toggle">
                   <input
                     class="toggle__input"
@@ -174,7 +177,7 @@
                 </label>
               </div>
               <div class="elements-window__greeting">
-                <p class="elements-window__description">greeting</p>
+                <p class="elements-window__name">Greeting</p>
                 <label class="toggle">
                   <input
                     class="toggle__input"
@@ -189,7 +192,7 @@
           </div>
           <div class="modal__images-window images-window">
             <div class="back-button"></div>
-            <div class="images-window__title">Images source:</div>
+            <div class="images-window__title"></div>
             <div class="images-window__wrapper">
               <label class="radio-checkbox">
                 <input

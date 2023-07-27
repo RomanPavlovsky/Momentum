@@ -5,10 +5,10 @@
     z-index: 5;
     left: 15;
     bottom: 15;
-    background: url("./svg/setting.svg");
+    background: url('./svg/setting.svg');
     background-size: cover;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     opacity: 0.65;
     &:hover {
       opacity: 1;
@@ -89,16 +89,16 @@
         &:hover .arrow {
           opacity: 1;
         }
-        .language-section__info,
-        .images-section__info,
-        .elements-section__info {
+        .language-section__title,
+        .images-section__title,
+        .elements-section__title {
           display: flex;
           justify-content: space-around;
         }
         .arrow {
           width: 2rem;
           height: 2rem;
-          background: url("./svg/arrow-right.svg") no-repeat center;
+          background: url('./svg/arrow-right.svg') no-repeat center;
           background-size: cover;
           opacity: 0.65;
         }
@@ -127,7 +127,7 @@
         cursor: pointer;
         width: 1.5rem;
         height: 1.5rem;
-        background: url("./svg/arrow-back.svg") no-repeat center;
+        background: url('./svg/arrow-back.svg') no-repeat center;
         background-size: cover;
         opacity: 0.65;
         &:hover {
@@ -140,9 +140,8 @@
     .images-window__title,
     .elements-window__title {
       padding: 20px;
-      font-size: 1.2rem;
+      font-size: 1rem;
       text-align: center;
-      width: 100%;
     }
     .language-window__wrapper {
       padding: 20px;
@@ -169,7 +168,7 @@
       width: 80%;
     }
     //toggle elements
-    .elements-window__audio,
+    .elements-window__player,
     .elements-window__weather,
     .elements-window__greeting,
     .elements-window__quote {
@@ -200,7 +199,7 @@
         background-color: rgba(183, 183, 183, 0.3);
         transition: 0.4s;
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           top: 2px;
           left: 2px;
@@ -248,7 +247,7 @@
           position: absolute;
           top: 50%;
           left: 50%;
-          content: "";
+          content: '';
           width: 15px;
           height: 15px;
           background-color: rgb(255, 255, 255);

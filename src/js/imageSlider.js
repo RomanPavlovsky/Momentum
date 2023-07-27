@@ -4,7 +4,7 @@ const prevSlide = document.querySelector(".slider-prev");
 const darkTheme = document.querySelector(".dark-filter");
 
 let imagesArr = [];
-let id = 0;
+let id;
 const getUnsplashImages = async (timeDay) => {
   const timeDayUrls = {
     morning: "6ARmtP5OHaE",
@@ -20,7 +20,6 @@ const getUnsplashImages = async (timeDay) => {
   imagesArr = data.map((element) => {
     return element.urls.regular;
   });
-  console.log("imagesArr>>>>>", imagesArr);
   slide(0);
   id = 0;
 };
@@ -39,7 +38,6 @@ const getFlickrImages = async (timeDay) => {
   imagesArr = data.photos.photo.map((element) => {
     return element.url_h;
   });
-  console.log("imagesArr>>>>>", imagesArr);
   slide(0);
   id = 0;
 };
@@ -61,7 +59,6 @@ prevSlide.addEventListener("click", () => {
   if (id < 0) {
     id = imagesArr.length - 1;
   }
-  console.log(id);
   slide(id);
 });
 nextSlide.addEventListener("click", () => {
@@ -69,7 +66,6 @@ nextSlide.addEventListener("click", () => {
   if (id > imagesArr.length - 1) {
     id = 0;
   }
-  console.log(id);
   slide(id);
 });
 export const getImages = () => {

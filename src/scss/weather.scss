@@ -1,6 +1,6 @@
 .weather {
   &__wrapper {
-    width: 320px;
+    width: auto;
     position: relative;
     display: none;
     flex-direction: column;
@@ -10,12 +10,24 @@
   &__city-input {
     cursor: pointer;
     width: 100%;
-    font-size: 24px;
+    font-size: 1.5rem;
     color: #ffffff;
     border: none;
     outline: none;
     background-color: transparent;
-    transition: all 1s ease-in;
+    transition: all 100ms linear;
+    &::placeholder {
+      // color: red;
+      padding-left: 100px;
+    }
+  }
+  &__input-buffer {
+    position: absolute;
+    top: -1000px;
+    left: -1000px;
+    visibility: hidden;
+    white-space: nowrap;
+    font-size: 1.5rem;
   }
   &__autocomplete-list {
     position: absolute;

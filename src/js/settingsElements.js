@@ -1,5 +1,5 @@
 const audioToggle = document.querySelector(
-  ".elements-window__audio .toggle__input"
+  ".elements-window__player .toggle__input"
 );
 const weatherToggle = document.querySelector(
   ".elements-window__weather .toggle__input"
