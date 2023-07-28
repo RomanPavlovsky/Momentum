@@ -5,6 +5,9 @@
     flex-direction: column;
     width: 400px;
     height: auto;
+    @include tablet {
+      @include tabletSize(width, 400, 350);
+    }
     .track-description {
       color: white;
       display: flex;

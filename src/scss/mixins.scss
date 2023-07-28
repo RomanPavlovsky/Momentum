@@ -1,0 +1,12 @@
+@mixin tabletSize($property, $startSize, $minSize) {
+  #{$property}: calc(
+    #{$minSize + px} + (#{$startSize} - #{$minSize}) * ((100vw - 767px) /
+          (1024 - 767))
+  );
+}
+
+@mixin tablet() {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}

@@ -3,12 +3,18 @@
     display: none;
     justify-content: center;
     align-items: center;
+    @include tablet {
+      flex-direction: column;
+    }
   }
   &__title {
     user-select: none;
     color: #ffffff;
-    font-size: 3.5rem;
+    font-size: 50px;
     margin-right: 20px;
+    @include tablet {
+      @include tabletSize(font-size, 50, 40);
+    }
   }
   &__name-input {
     width: 360px;
@@ -16,13 +22,20 @@
     max-width: 800px;
     outline: none;
     color: #ffffff;
-    font-size: 3.5rem;
+    font-size: 50px;
     border: none;
     background-color: rgba(128, 128, 128, 0);
-
     &::placeholder {
       color: rgba(214, 211, 211, 0.815);
-      font-size: 3.5rem;
+      font-size: 50px;
+      @include tablet {
+        @include tabletSize(font-size, 50, 40);
+        text-align: center;
+      }
+    }
+    @include tablet {
+      @include tabletSize(font-size, 50, 40);
+      text-align: center;
     }
   }
   &__input-buffer {

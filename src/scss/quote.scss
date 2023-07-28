@@ -17,7 +17,7 @@
     cursor: pointer;
     width: 1.5rem;
     height: 1.5rem;
-    background: url("./svg/refresh.svg") no-repeat;
+    background: url('./svg/refresh.svg') no-repeat;
     opacity: 0.65;
     &:hover {
       opacity: 1;
@@ -38,12 +38,21 @@
   &__text {
     display: block;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 24px;
+    @include tablet {
+      @include tabletSize(font-size, 24, 18);
+      text-align: center;
+    }
   }
   &__author {
     padding: 25px;
     display: block;
     font-size: 1.5rem;
     font-style: italic;
+    @include tablet {
+      @include tabletSize(padding, 25, 15);
+      @include tabletSize(font-size, 24, 18);
+      text-align: center;
+    }
   }
 }

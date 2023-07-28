@@ -7,8 +7,14 @@
   color: #ffffff;
   &__time {
     font-size: 100px;
+    @include tablet {
+      @include tabletSize(font-size, 100, 80);
+    }
   }
   &__date {
     font-size: 50px;
+    @include tablet {
+      @include tabletSize(font-size, 50, 40);
+    }
   }
 }
