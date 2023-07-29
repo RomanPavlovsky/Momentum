@@ -1,11 +1,11 @@
-const cityInput = document.querySelector(".weather__city-input");
-const buffer = document.querySelector(".weather__input-buffer");
-const autocompleteList = document.querySelector(".weather__autocomplete-list");
-const temp = document.querySelector(".weather__temp");
-const iconWeather = document.querySelector(".weather__icon");
-const descriptionWeather = document.querySelector(".weather__description");
-const wind = document.querySelector(".weather__wind");
-const humidity = document.querySelector(".weather__humidity");
+const cityInput = document.querySelector('.weather__city-input');
+const buffer = document.querySelector('.weather__input-buffer');
+const autocompleteList = document.querySelector('.weather__autocomplete-list');
+const temp = document.querySelector('.weather__temp');
+const iconWeather = document.querySelector('.weather__icon');
+const descriptionWeather = document.querySelector('.weather__description');
+const wind = document.querySelector('.weather__wind');
+const humidity = document.querySelector('.weather__humidity');
 // autocomplete
 let autocomplete = [];
 const getCityAutocomplete = async (value) => {
@@ -21,27 +21,27 @@ const getCityAutocomplete = async (value) => {
   });
   const autocompleteCity = await autocomplete
     .map((element) => {
-      if (localStorage.getItem("lang") === "en") {
+      if (localStorage.getItem('lang') === 'en') {
         return `<li data-index=${element.id}>${element.city_name_en}, ${element.country_name_en} </li>`;
-      } else if (localStorage.getItem("lang") === "ru") {
+      } else if (localStorage.getItem('lang') === 'ru') {
         return `<li data-index=${element.id}>${element.city_name_ru}, ${element.country_name_ru} </li>`;
       }
     })
     .slice(0, 5)
-    .join("");
+    .join('');
   autocompleteList.innerHTML = autocompleteCity;
 };
 
-autocompleteList.addEventListener("click", (e) => {
-  sessionStorage.setItem("cityInput", `${e.target.textContent}`);
+autocompleteList.addEventListener('click', (e) => {
+  sessionStorage.setItem('cityInput', `${e.target.textContent}`);
   cityInput.value = e.target.textContent;
   const location = autocomplete.filter((obj) => {
     if (obj.id === e.target.dataset.index) {
       return obj;
     }
   });
-  getUserWeather(location);
-  autocompleteList.innerHTML = "";
+  getUserWeather([location[0].latitude, location[0].longitude]);
+  autocompleteList.innerHTML = '';
 });
 const setInputWidth = () => {
   buffer.textContent = `${cityInput.value}`;
@@ -49,55 +49,62 @@ const setInputWidth = () => {
 };
 
 // Input City
-cityInput.addEventListener("input", () => {
+cityInput.addEventListener('input', () => {
   if (cityInput.value.length >= 2) {
     const value = cityInput.value.toLowerCase();
     getCityAutocomplete(value);
   } else if (cityInput.value.length < 2) {
-    autocompleteList.innerHTML = "";
+    autocompleteList.innerHTML = '';
   }
 });
-cityInput.addEventListener("focus", () => {
-  cityInput.value = "";
-  cityInput.style.width = "100%";
+cityInput.addEventListener('focus', () => {
+  cityInput.value = '';
+  cityInput.style.width = '100%';
 });
-cityInput.addEventListener("blur", () => {
+cityInput.addEventListener('blur', () => {
   setTimeout(() => {
-    if (cityInput.value != sessionStorage.getItem("cityInput")) {
-      cityInput.value = sessionStorage.getItem("cityInput");
+    if (cityInput.value != sessionStorage.getItem('cityInput')) {
+      cityInput.value = sessionStorage.getItem('cityInput');
     }
-    autocompleteList.innerHTML = "";
+    autocompleteList.innerHTML = '';
     setInputWidth();
   }, 150);
 });
 
-cityInput.addEventListener("change", () => {});
+cityInput.addEventListener('change', () => {});
 
 // Autoloading user location
 const getUserLocation = async () => {
-  const res = await fetch(`http://ip-api.com/json/?lang=${localStorage.lang}`);
+  const res = await fetch(
+    `https://api.ipbase.com/v2/info?apikey=${process.env.IPBASE_API_KEY}&language=ru`
+  );
   const data = await res.json();
-  console.log("IP ЛОКАЦИЯ", data);
-  cityInput.value = `${data.city}, ${data.country}`;
+  console.log('IP ЛОКАЦИЯ', data.data);
+  if (localStorage.lang === 'ru') {
+    cityInput.value = `${data.data.location.city.name_translated}`;
+  } else {
+    cityInput.value = `${data.data.location.city.name}`;
+  }
   setInputWidth();
-  sessionStorage.setItem("cityInput", `${cityInput.value}`);
-  return data;
+  sessionStorage.setItem('cityInput', `${cityInput.value}`);
+  return [data.data.location.latitude, data.data.location.longitude];
 };
 //Autoloading user weather
 const getUserWeather = async (location) => {
-  const lat = location.lat || location[0].latitude;
-  const lon = location.lon || location[0].longitude;
+  console.log('weather work');
+  const lat = location[0];
+  const lon = location[1];
   const res = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.WEATHER_API_KEY}&lang=${localStorage.lang}`
   );
   const data = await res.json();
-  console.log("WEATHER DATA", data);
-  temp.innerHTML = Math.round(data.main.temp - 273) + "&deg C";
+  console.log('WEATHER DATA', data);
+  temp.innerHTML = Math.round(data.main.temp - 273) + '&deg C';
   iconWeather.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">`;
   const description = data.weather[0].description;
   descriptionWeather.textContent =
     description[0].toUpperCase() + description.slice(1);
-  if (localStorage.lang === "ru") {
+  if (localStorage.lang === 'ru') {
     wind.textContent = `Скорость ветра ${Math.round(data.wind.speed)} м/с`;
     humidity.textContent = `Влажность: ${data.main.humidity}%`;
   } else {
