@@ -79,7 +79,6 @@ const getUserLocation = async () => {
     `https://api.ipbase.com/v2/info?apikey=${process.env.IPBASE_API_KEY}&language=ru`
   );
   const data = await res.json();
-  console.log('IP ЛОКАЦИЯ', data.data);
   if (localStorage.lang === 'ru') {
     cityInput.value = `${data.data.location.city.name_translated}`;
   } else {
@@ -91,14 +90,12 @@ const getUserLocation = async () => {
 };
 //Autoloading user weather
 const getUserWeather = async (location) => {
-  console.log('weather work');
   const lat = location[0];
   const lon = location[1];
   const res = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.WEATHER_API_KEY}&lang=${localStorage.lang}`
   );
   const data = await res.json();
-  console.log('WEATHER DATA', data);
   temp.innerHTML = Math.round(data.main.temp - 273) + '&deg C';
   iconWeather.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">`;
   const description = data.weather[0].description;

@@ -92,7 +92,6 @@ const getDesktopId = () => {
     id3 === id1 ||
     id3 === id2
   );
-  console.log(arrId);
   return [id1, id2, id3];
 };
 const renderCards = (state) => {
@@ -143,7 +142,6 @@ const useNext = () => {
     }
   } else {
     if (isNext === false && isPrev === false) {
-      console.log('work');
       currentId = getDesktopId();
       isNext = true;
       let x = [1, 2, 3];
@@ -158,7 +156,6 @@ const useNext = () => {
       isNext = true;
       renderCards(currentId);
     } else if (isNext !== true) {
-      console.log(currentId);
       renderCards(desktopState);
       [currentId, desktopState] = [desktopState, currentId];
       isNext = true;
@@ -232,14 +229,12 @@ if (mediaMobile.matches) {
 }
 function tablet(e) {
   if (e.matches) {
-    console.log('tablet');
     getIdCards();
     isNext = false;
     isPrev = false;
     tabletState = arrId.slice(0, 2);
     sliderContent.innerHTML = addCard(arrId[0]) + addCard(arrId[1]);
   } else {
-    console.log('desktop');
     getIdCards();
     isNext = false;
     isPrev = false;
@@ -250,14 +245,12 @@ function tablet(e) {
 }
 function mobile(e) {
   if (e.matches) {
-    console.log('mobile');
     getIdCards();
     isNext = false;
     isPrev = false;
     mobileState = arrId.slice(0, 1);
     sliderContent.innerHTML = addCard(arrId[0]);
   } else {
-    console.log('tablet');
     getIdCards();
     isNext = false;
     isPrev = false;
