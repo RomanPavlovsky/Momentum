@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './sources/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'index.[contenthash].js',
@@ -14,7 +14,7 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src', 'index.html'),
+      template: path.resolve(__dirname, 'sources', 'index.html'),
       filename: 'index.html',
     }),
     new MiniCssExtractPlugin({
@@ -23,7 +23,7 @@ module.exports = {
     new Dotenv(),
   ],
   devServer: {
-    watchFiles: path.resolve(__dirname, 'src'),
+    watchFiles: path.resolve(__dirname, 'sources'),
     port: 8080,
   },
   module: {
